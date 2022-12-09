@@ -1,0 +1,7 @@
+<form class="text-center d-flex" role="search" action="" method="GET">
+    {{ form.search }}
+    <input class="btn btn-outline-success" type="submit" value="Поиск">
+    {% for error in form.search.errors %}
+        <p class="form-error">{{ error }}</p>
+    {% endfor %}
+</form>

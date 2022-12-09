@@ -1,0 +1,54 @@
+<ul class="pagination">
+
+    {% if not page_obj.has_previous %}
+        <li class="page-link disabled">
+            <span>В начало</span>
+        </li>
+    {% else %}
+        <li class="page-item">
+        <a href="?{% if query %}{{ query }}&{% endif %}page=1" class="page-link">В начало</a>
+        </li>
+    {% endif %}
+
+    {% if page_obj.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?{% if query %}{{ query }}&{% endif %}page={{ page_obj.previous_page_number }}" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span></a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="?{% if query %}{{ query }}&{% endif %}page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+        </li>
+    {% else %}
+        <li class="page-link disabled">
+            <span>&laquo;</span>
+        </li>
+    {% endif %}
+
+    <li class="page-item active" aria-current="page">
+        <a class="page-link" href="?{% if query %}{{ query }}&{% endif %}page={{ page_obj.number }}">{{ page_obj.number }}</a>
+    </li>
+
+    {% if page_obj.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?{% if query %}{{ query }}&{% endif %}page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="?{% if query %}{{ query }}&{% endif %}page={{ page_obj.next_page_number }}" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span></a>
+        </li>
+    {% else %}
+        <li class="page-link disabled">
+            <span>&raquo;</span>
+        </li>
+    {% endif %}
+
+    {% if not page_obj.has_next %}
+        <li class="page-link disabled">
+            <span>В конец</span>
+        </li>
+    {% else %}
+        <li class="page-item">
+            <a href="?{% if query %}{{ query }}&{% endif %}page={{ page_obj.paginator.num_pages}}" class="page-link">В конец</a>
+        </li>
+    {% endif %}
+</ul>

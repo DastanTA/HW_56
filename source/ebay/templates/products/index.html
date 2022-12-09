@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    All products
+{% endblock %}
+
+
+{% block menu %}
+    <li class="nav-item"><a class="nav-link" href="#">Добавить продукт</a></li> {# {% url 'add_product' %} #}
+    <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Категории
+          </a>
+          <ul class="dropdown-menu">
+{#            <li><a class="dropdown-item" href="{% url 'by_category' 'food' %}">Еда</a></li>#}
+{#            <li><a class="dropdown-item" href="{% url 'by_category' 'toys' %}">Игрушки</a></li>#}
+{#            <li><a class="dropdown-item" href="{% url 'by_category' 'stationary' %}">Канцелярия</a></li>#}
+{#            <li><a class="dropdown-item" href="{% url 'by_category' 'books' %}">Книги</a></li>#}
+{#            <li><hr class="dropdown-divider"></li>#}
+{#            <li><a class="dropdown-item" href="{% url 'by_category' 'other' %}">Другое</a></li>#}
+          </ul>
+    </li>
+{% endblock %}
+
+
+{% block search %}
+    {% include 'partial/simple_search.html' %}
+{% endblock %}
+
+
+{% block content %}
+    <div><br><br><br><h2>Все товары [{{ products.count }}]</h2><br></div>
+    {% if is_paginated %}
+        {% include 'partial/pagination.html' %}
+    {% endif %}
+
+<div class="row row-cols-1">
+    {% for product in products %}
+      <div class="col mt-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text">Цена: {{ product.price }}</p>
+            <p class="card-text">Категория: {{ product.get_category_display }}</p><br>
+            <a href="#" class="btn btn-info">Подробнее</a> {# {{ product.get_absolute_url }} #}
+            <a href="#" class="btn btn-secondary">Удалить</a> {# {% url 'delete_product' product.id %} #}
+            <a href="#" class="btn btn-secondary">Изменить</a>  {# {% url 'update_product' product.id %} #}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+</div><br>
+
+    {% if is_paginated %}
+        {% include 'partial/pagination.html' %}
+    {% endif %}
+
+{% endblock %}
