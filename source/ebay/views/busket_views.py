@@ -57,3 +57,9 @@ class BasketView(TemplateView):
         return context
 
 
+class InBasketDeleteView(View):
+    def get(self, request, *args, **kwargs):
+        product = Product.objects.get(pk=kwargs.get('pk'))
+        prod_in_basket = Basket.objects.get(product=product)
+        prod_in_basket.delete()
+        return redirect('view_basket')

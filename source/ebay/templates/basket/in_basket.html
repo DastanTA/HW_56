@@ -22,7 +22,7 @@
       <tbody>
         {% for element in in_basket%}
             <tr>
-              <td>{{ element.product.name }}</td>
+              <td>{{ element.product.name }} <a href="{% url 'delete_in_basket' element.product.id %}" class="btn btn-secondary btn-sm">Удалить</a></td>
               <td>{{ element.quantity }}</td>
               <td>{{ element.product.price }}</td>
                 {% for key, value in sum.items %}
