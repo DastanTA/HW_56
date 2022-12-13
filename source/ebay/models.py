@@ -25,3 +25,14 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse('view_product', kwargs={'pk': self.pk})
+
+    def get_total_number(self):
+        total = Product.objects.all().count()
+        return total
+
+
+class Basket(models.Model):
+    product = models.ForeignKey('ebay.Product', related_name='basket', on_delete=models.DO_NOTHING,
+                                verbose_name='продукт', null=True, blank=True)
+    quantity = models.PositiveIntegerField()
+

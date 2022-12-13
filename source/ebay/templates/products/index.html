@@ -46,6 +46,7 @@
             <a href="{{ product.get_absolute_url }}" class="btn btn-info">Подробнее</a>
             <a href="{% url 'delete_product' product.id %}" class="btn btn-secondary">Удалить</a>
             <a href="{% url 'update_product' product.id %}" class="btn btn-secondary">Изменить</a>
+            <a href="{% url 'add_to_basket' product.id %}" class="btn btn-info">Добавить в корзину</a>
           </div>
         </div>
       </div>

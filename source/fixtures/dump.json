@@ -1,0 +1,116 @@
+[
+{
+    "model": "ebay.product",
+    "pk": 1,
+    "fields": {
+        "name": "Bread",
+        "description": "Baton. 0.4 kg",
+        "category": "food",
+        "remainder": 5,
+        "price": "45.00"
+    }
+},
+{
+    "model": "ebay.product",
+    "pk": 2,
+    "fields": {
+        "name": "robot",
+        "description": "Toy robot. Autobot - Transformer",
+        "category": "toys",
+        "remainder": 4,
+        "price": "150.00"
+    }
+},
+{
+    "model": "ebay.product",
+    "pk": 3,
+    "fields": {
+        "name": "Screw-driver",
+        "description": "Инструмент. Отвертка",
+        "category": "other",
+        "remainder": 5,
+        "price": "75.00"
+    }
+},
+{
+    "model": "ebay.product",
+    "pk": 4,
+    "fields": {
+        "name": "Notebook",
+        "description": "Ordinary notebook. A4 size",
+        "category": "stationary",
+        "remainder": 100,
+        "price": "50.00"
+    }
+},
+{
+    "model": "ebay.product",
+    "pk": 5,
+    "fields": {
+        "name": "When Mountains Fall",
+        "description": "Chyngyz Aitmatov. The last novel of the legendary writer.",
+        "category": "books",
+        "remainder": 20,
+        "price": "800.00"
+    }
+},
+{
+    "model": "ebay.product",
+    "pk": 6,
+    "fields": {
+        "name": "Milk",
+        "description": "Milk. Dairy. 2.5%. expiry date: 20.12.2022",
+        "category": "food",
+        "remainder": 40,
+        "price": "70.00"
+    }
+},
+{
+    "model": "ebay.product",
+    "pk": 7,
+    "fields": {
+        "name": "Pen",
+        "description": "Ordinary, most cheap pen",
+        "category": "stationary",
+        "remainder": 100,
+        "price": "15.00"
+    }
+},
+{
+    "model": "ebay.product",
+    "pk": 8,
+    "fields": {
+        "name": "piggy bank",
+        "description": "Kopilka. Dollar print. large size",
+        "category": "other",
+        "remainder": 0,
+        "price": "250.00"
+    }
+},
+{
+    "model": "ebay.basket",
+    "pk": 1,
+    "fields": {
+        "product": 5,
+        "quantity": 1
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$390000$v7nPSBV5RNBSzhXEXyFRvQ$1LVhpuHBspaNOK4HRy/CxhtnDFRVESOVYKupbDC6OWw=",
+        "last_login": "2022-12-13T05:28:08.340Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2022-12-09T15:46:27.752Z",
+        "groups": [],
+        "user_permissions": []
+    }
+}
+]

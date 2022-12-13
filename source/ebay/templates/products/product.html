@@ -8,6 +8,7 @@
     <li class="nav-item"><a class="nav-link" href="{% url 'add_product' %}">Добавить</a></li>
     <li class="nav-item"><a class="nav-link" href="{% url 'update_product' product.id %}">Изменить</a></li>
     <li class="nav-item"><a class="nav-link" href="{% url 'delete_product' product.id %}">Удалить</a></li>
+    <li class="nav-item"><a class="nav-link" href="#">Корзина</a></li> {# {% url 'basket' %} #}
 {% endblock %}
 
 {% block content %}
@@ -24,6 +25,7 @@
   <div class="card-body">
     <a href="{% url 'update_product' product.id %}" class="btn btn-secondary">Изменить</a>
     <a href="{% url 'delete_product' product.id %}" class="btn btn-secondary">Удалить</a>
+    <a href="{% url 'add_to_basket' product.id %}" class="btn btn-info">Добавить в корзину</a>
   </div>
 </div>
 {% endblock %}

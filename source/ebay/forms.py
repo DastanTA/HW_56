@@ -1,7 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from django.forms import widgets
-from ebay.models import Product
+from ebay.models import Product, Basket
 
 
 class SimpleSearchForm(forms.Form):
@@ -36,3 +36,5 @@ class ProductForm(forms.ModelForm):
         if price < 0:
             raise ValidationError('Цена не может быть ниже 0!')
         return price
+
+

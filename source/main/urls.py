@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path
-from ebay.views import AllProductsView, ProductView, ProductCreateView, ProductUpdateView, ProductDeleteView
+from ebay.views import AllProductsView, ProductView, ProductCreateView,\
+    ProductUpdateView, ProductDeleteView, AddToBasketView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -9,4 +10,5 @@ urlpatterns = [
     path('product/<int:pk>/', ProductView.as_view(), name='view_product'),
     path('product/<int:pk>/update/', ProductUpdateView.as_view(), name='update_product'),
     path('product/<int:pk>/delete', ProductDeleteView.as_view(), name='delete_product'),
+    path('product/<int:pk>/add_to_basket', AddToBasketView.as_view(), name='add_to_basket'),
 ]

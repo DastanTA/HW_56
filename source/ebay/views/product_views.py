@@ -3,7 +3,7 @@ from django.db.models import Q
 from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 
-from ebay.models import Product, CATEGORY_CHOICES
+from ebay.models import Product
 from ebay.views.base_views import SearchView
 from ebay.forms import ProductForm
 

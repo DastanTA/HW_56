@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %} Add {{ product.name }}{% endblock %}
+
+{% block menu %}
+    <li class="nav-item"><a class="nav-link" href="{% url 'view_product' product.id %}">К товару</a></li>
+{% endblock %}
+
+{% block content %}
+    <br><br><br><h3>Хотите доавить "{{ product.name }}" в корзину?</h3><br><br>
+    <form method="POST" action="{% url "add_to_basket" product.id %}" class="text-center">
+        {% csrf_token %}
+        <p><input type="submit" value="Да"></p>
+        <p><a class="delete_no_link" href="{% url "all_products" %}">Нет</a></p>
+    </form>
+{% endblock %}
