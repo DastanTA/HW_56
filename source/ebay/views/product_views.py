@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Q
+from django.views.generic import DetailView
+
 from ebay.models import Product, CATEGORY_CHOICES
 from ebay.views.base_views import SearchView
 
@@ -11,7 +13,7 @@ class AllProductsView(SearchView):
     ordering = ['category', 'name']
     template_name = 'products/index.html'
     context_object_name = 'products'
-    paginate_by = 50
+    paginate_by = 5
     paginate_orphans = 1
 
     def get_queryset(self):
@@ -19,5 +21,10 @@ class AllProductsView(SearchView):
         return queryset.filter(remainder__gt=0)
 
     def get_query(self):
-        query = Q(name__icontains=self.search_value) | Q(description__icontains=self.search_value) | Q(project__title__icontains=self.search_value)
+        query = Q(name__icontains=self.search_value) | Q(description__icontains=self.search_value)
         return query
+
+
+class ProductView(DetailView):
+    model = Product
+    template_name = 'products/product.html'

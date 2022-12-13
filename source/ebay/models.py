@@ -20,4 +20,4 @@ class Product(models.Model):
         return f'{self.name}_(id: {self.id})'
 
     def get_absolute_url(self):
-        return reverse('view_product', kwargs={'pk': self.pk})    ############ change it !!!!!!!!
+        return reverse('view_product', kwargs={'pk': self.pk})

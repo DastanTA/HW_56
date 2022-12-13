@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ product.name }}
+{% endblock %}
+
+{#{% block menu %}#}
+{#    <li class="nav-item"><a class="nav-link" href="{% url 'add_product' %}">Добавить</a></li>#}
+{#    <li class="nav-item"><a class="nav-link" href="{% url 'update_product' product.id %}">Изменить</a></li>#}
+{#    <li class="nav-item"><a class="nav-link" href="{% url 'delete_product' product.id %}">Удалить</a></li>#}
+{#{% endblock %}#}
+
+{% block content %}
+<div class="card w-50 mt-5" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{ product.name }}</h5>
+    <p class="card-text">{{ product.description }}</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">категерия: {{ product.get_category_display }}</li>
+    <li class="list-group-item">цена: {{ product.price }} сом</li>
+    <li class="list-group-item">остаток: {{ product.remainder }} шт.</li>
+  </ul>
+  <div class="card-body">
+    <a href="#" class="btn btn-secondary">Изменить</a> {# {% url 'update_product' task.id %} #}
+    <a href="#" class="btn btn-secondary">Удалить</a> {# {% url 'delete_product' task.id %} #}
+  </div>
+</div>
+{% endblock %}

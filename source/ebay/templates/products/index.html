@@ -43,7 +43,7 @@
             <h5 class="card-title">{{ product.name }}</h5>
             <p class="card-text">Цена: {{ product.price }}</p>
             <p class="card-text">Категория: {{ product.get_category_display }}</p><br>
-            <a href="#" class="btn btn-info">Подробнее</a> {# {{ product.get_absolute_url }} #}
+            <a href="{{ product.get_absolute_url }}" class="btn btn-info">Подробнее</a>
             <a href="#" class="btn btn-secondary">Удалить</a> {# {% url 'delete_product' product.id %} #}
             <a href="#" class="btn btn-secondary">Изменить</a>  {# {% url 'update_product' product.id %} #}
           </div>

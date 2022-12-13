@@ -1,4 +1,5 @@
 from django import forms
+from django.core.exceptions import ValidationError
 from django.forms import widgets
 from ebay.models import Product
 
@@ -14,7 +15,13 @@ class SimpleSearchForm(forms.Form):
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ['name', 'description', 'category', 'price']
+        fields = ['name', 'description', 'category', 'price', 'remainder']
         widgets = {'description': widgets.Textarea(attrs={"cols": 24, "rows": 3, 'class': 'form-control'}),
                    'category': widgets.CheckboxSelectMultiple,
                    'name': widgets.TextInput(attrs={'class': 'form-control'})}
+
+    def clean_remainder(self):
+        remainder = self.cleaned_data.get('remainder')
+        if remainder < 0:
+            raise ValidationError('Остаток не может быть ниже нуля!')
+        return remainder

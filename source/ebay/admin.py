@@ -3,7 +3,7 @@ from ebay.models import Product
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['name', 'description', 'category', 'remainder', 'price']
+    list_display = ['id', 'name', 'description', 'category', 'remainder', 'price']
     list_filter = ['category']
     search_fields = ['name']
     exclude = []
