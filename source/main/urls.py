@@ -1,11 +1,12 @@
 from django.contrib import admin
 from django.urls import path
 from ebay.views import AllProductsView, ProductView, ProductCreateView,\
-    ProductUpdateView, ProductDeleteView, AddToBasketView, BasketView, InBasketDeleteView
+    ProductUpdateView, ProductDeleteView, AddToBasketView, BasketView, InBasketDeleteView, CreateOrder
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', AllProductsView.as_view(), name='all_products'),
+    path('add_order/', CreateOrder.as_view(), name='add_order'),
     path('basket/', BasketView.as_view(), name='view_basket'),
     path('basket/<int:pk>/delete', InBasketDeleteView.as_view(), name='delete_in_basket'),
     path('add_product/', ProductCreateView.as_view(), name='add_product'),

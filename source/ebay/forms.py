@@ -1,7 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from django.forms import widgets
-from ebay.models import Product, Basket
+from ebay.models import Product, Order
 
 
 class SimpleSearchForm(forms.Form):
@@ -38,3 +38,7 @@ class ProductForm(forms.ModelForm):
         return price
 
 
+class OrderForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ['user_name', 'phone', 'address']
