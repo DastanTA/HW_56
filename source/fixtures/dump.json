@@ -88,27 +88,68 @@
     }
 },
 {
-    "model": "ebay.basket",
+    "model": "ebay.orderproduct",
     "pk": 1,
     "fields": {
         "product": 5,
+        "order": 1,
         "quantity": 1
     }
 },
 {
-    "model": "ebay.basket",
+    "model": "ebay.orderproduct",
     "pk": 2,
     "fields": {
         "product": 6,
+        "order": 1,
         "quantity": 3
     }
 },
 {
-    "model": "ebay.basket",
-    "pk": 18,
+    "model": "ebay.orderproduct",
+    "pk": 5,
     "fields": {
-        "product": 3,
+        "product": 5,
+        "order": 3,
         "quantity": 1
+    }
+},
+{
+    "model": "ebay.orderproduct",
+    "pk": 6,
+    "fields": {
+        "product": 6,
+        "order": 3,
+        "quantity": 4
+    }
+},
+{
+    "model": "ebay.orderproduct",
+    "pk": 7,
+    "fields": {
+        "product": 4,
+        "order": 3,
+        "quantity": 1
+    }
+},
+{
+    "model": "ebay.order",
+    "pk": 1,
+    "fields": {
+        "user_name": "Dastan",
+        "phone": "0666 787689",
+        "address": "Bishkek, Ak-uy",
+        "created_at": "2022-12-13T12:44:33.630Z"
+    }
+},
+{
+    "model": "ebay.order",
+    "pk": 3,
+    "fields": {
+        "user_name": "Urmat",
+        "phone": "4567 898757234",
+        "address": "Talas, KG",
+        "created_at": "2022-12-13T12:47:49.465Z"
     }
 },
 {
