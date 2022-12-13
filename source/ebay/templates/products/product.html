@@ -6,7 +6,7 @@
 
 {% block menu %}
     <li class="nav-item"><a class="nav-link" href="{% url 'add_product' %}">Добавить</a></li>
-{#    <li class="nav-item"><a class="nav-link" href="{% url 'update_product' product.id %}">Изменить</a></li>#}
+    <li class="nav-item"><a class="nav-link" href="{% url 'update_product' product.id %}">Изменить</a></li>
 {#    <li class="nav-item"><a class="nav-link" href="{% url 'delete_product' product.id %}">Удалить</a></li>#}
 {% endblock %}
 
@@ -22,8 +22,8 @@
     <li class="list-group-item">остаток: {{ product.remainder }} шт.</li>
   </ul>
   <div class="card-body">
-    <a href="#" class="btn btn-secondary">Изменить</a> {# {% url 'update_product' task.id %} #}
-    <a href="#" class="btn btn-secondary">Удалить</a> {# {% url 'delete_product' task.id %} #}
+    <a href="{% url 'update_product' product.id %}" class="btn btn-secondary">Изменить</a>
+    <a href="#" class="btn btn-secondary">Удалить</a> {# {% url 'delete_product' product.id %} #}
   </div>
 </div>
 {% endblock %}

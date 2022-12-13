@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Q
+from django.urls import reverse
 from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 
 from ebay.models import Product, CATEGORY_CHOICES
@@ -35,3 +36,13 @@ class ProductCreateView(CreateView):
     model = Product
     template_name = 'products/create_product.html'
     form_class = ProductForm
+
+
+class ProductUpdateView(UpdateView):
+    model = Product
+    template_name = 'products/update_product.html'
+    form_class = ProductForm
+    context_object_name = 'product'
+
+    def get_success_url(self):
+        return reverse('view_product', kwargs={'pk': self.object.pk})
