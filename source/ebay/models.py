@@ -3,6 +3,10 @@ from django.urls import reverse
 
 CATEGORY_CHOICES = [('food', 'еда'), ('toys', 'игрушки'), ('stationary', 'канцелярия'), ('books', 'книги'), ('other', 'другое')]
 
+#
+# class Category(models.Model):
+#     name = models.CharField(max_length=50, null=False, blank=False, verbose_name='название')
+
 
 class Product(models.Model):
     name = models.CharField(max_length=100, null=False, blank=False, verbose_name='наименование')

@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Q
-from django.views.generic import DetailView
+from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 
 from ebay.models import Product, CATEGORY_CHOICES
 from ebay.views.base_views import SearchView
+from ebay.forms import ProductForm
 
 Product.objects.all().order_by("category", "name").filter(remainder__gt=0)
 
@@ -28,3 +29,9 @@ class AllProductsView(SearchView):
 class ProductView(DetailView):
     model = Product
     template_name = 'products/product.html'
+
+
+class ProductCreateView(CreateView):
+    model = Product
+    template_name = 'products/create_product.html'
+    form_class = ProductForm
