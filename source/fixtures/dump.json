@@ -96,6 +96,22 @@
     }
 },
 {
+    "model": "ebay.basket",
+    "pk": 2,
+    "fields": {
+        "product": 6,
+        "quantity": 3
+    }
+},
+{
+    "model": "ebay.basket",
+    "pk": 18,
+    "fields": {
+        "product": 3,
+        "quantity": 1
+    }
+},
+{
     "model": "auth.user",
     "pk": 1,
     "fields": {

@@ -17,13 +17,22 @@ class AddToBasketView(View):
     def post(self, request, *args, **kwargs):
         pk = kwargs.get("pk")
         product = Product.objects.get(pk=pk)
-        if product not in Basket.objects.all():
+        flag = False
+        for element in Basket.objects.all():
+            if product == element.product:
+                flag = True
+            else:
+                continue
+
+        if not flag:
             Basket.objects.create(product=product, quantity=1)
+            print(product)
             return redirect('all_products')
-        else:
-            qnt = Basket.objects.get(product).quantity
-            if qnt < product.remainder:
-                Basket.objects.get(product).quantity = qnt + 1
+        elif flag:
+            product_to_update = Basket.objects.get(product=product)
+            if product_to_update.quantity < product.remainder:
+                product_to_update.quantity = product_to_update.quantity + 1
+                product_to_update.save()
                 return redirect('all_products')
             else:
                 return redirect('all_products')
