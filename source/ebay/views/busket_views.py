@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Q
 from django.urls import reverse, reverse_lazy
 from django.views import View
-from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import TemplateView
 
 from ebay.models import Basket, Product
 
@@ -26,7 +26,6 @@ class AddToBasketView(View):
 
         if not flag:
             Basket.objects.create(product=product, quantity=1)
-            print(product)
             return redirect('all_products')
         elif flag:
             product_to_update = Basket.objects.get(product=product)
@@ -36,3 +35,25 @@ class AddToBasketView(View):
                 return redirect('all_products')
             else:
                 return redirect('all_products')
+
+
+class BasketView(TemplateView):
+    template_name = 'basket/in_basket.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        in_basket = Basket.objects.all()
+        all_products = Product.objects.all()
+        prod_sum_dict = {}
+        total = 0
+        for element in in_basket:
+            price = all_products.get(name__iexact=element.product.name).price
+            summ = element.quantity * price
+            prod_sum_dict[element.product.name] = summ
+            total += summ
+        context['sum'] = prod_sum_dict
+        context['in_basket'] = in_basket
+        context['total'] = total
+        return context
+
+

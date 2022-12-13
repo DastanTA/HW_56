@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Basket
+{% endblock %}
+
+
+{% block content %}
+    <div><br><br><br><h2>Товары в корзине [{{ in_basket.count }} нaименований]</h2><br></div>
+
+    <table  class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Товар</th>
+          <th scope="col">количество (шт.)</th>
+          <th scope="col">цена (сом)</th>
+          <th scope="col">сумма (сом)</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for element in in_basket%}
+            <tr>
+              <td>{{ element.product.name }}</td>
+              <td>{{ element.quantity }}</td>
+              <td>{{ element.product.price }}</td>
+                {% for key, value in sum.items %}
+                    {% if key == element.product.name %}
+                        <td>{{ value }}</td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        {% empty %}
+            <p>В корзине пока ничего нет</p>
+        {% endfor %}
+        <tr class="table-dark">
+            <td></td>
+            <td></td>
+            <td>Итого:</td>
+            <td>{{ total }} сом</td>
+        </tr>
+      </tbody>
+    </table>
+
+{% endblock %}

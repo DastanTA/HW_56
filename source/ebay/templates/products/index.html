@@ -8,6 +8,7 @@
 
 {% block menu %}
     <li class="nav-item"><a class="nav-link" href="{% url 'add_product' %}">Добавить продукт</a></li>
+    <li class="nav-item"><a class="nav-link" href="{% url 'view_basket' %}">Корзина</a></li>
     <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Категории
@@ -46,7 +47,7 @@
             <a href="{{ product.get_absolute_url }}" class="btn btn-info">Подробнее</a>
             <a href="{% url 'delete_product' product.id %}" class="btn btn-secondary">Удалить</a>
             <a href="{% url 'update_product' product.id %}" class="btn btn-secondary">Изменить</a>
-            <a href="{% url 'add_to_basket' product.id %}" class="btn btn-info">Добавить в корзину</a>
+            <a href="{% url 'add_to_basket' product.id %}" class="btn btn-warning">Добавить в корзину</a>
           </div>
         </div>
       </div>

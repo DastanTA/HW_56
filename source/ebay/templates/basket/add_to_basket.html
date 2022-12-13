@@ -4,6 +4,7 @@
 
 {% block menu %}
     <li class="nav-item"><a class="nav-link" href="{% url 'view_product' product.id %}">К товару</a></li>
+    <li class="nav-item"><a class="nav-link" href="{% url 'view_basket' %}">Корзина</a></li>
 {% endblock %}
 
 {% block content %}
