@@ -38,6 +38,9 @@ class Basket(models.Model):
                                 verbose_name='продукт', null=True, blank=True)
     quantity = models.PositiveIntegerField()
 
+    def __str__(self):
+        return f'{self.product.name} - {self.quantity}'
+
 
 class OrderProduct(models.Model):
     product = models.ForeignKey('ebay.Product', related_name='product_order', on_delete=models.DO_NOTHING,
