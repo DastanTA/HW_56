@@ -59,7 +59,7 @@ class OrderProduct(models.Model):
 class Order(models.Model):
     product = models.ManyToManyField('ebay.Product', related_name='orders', through='ebay.OrderProduct',
                                      through_fields=('order', 'product'), blank=True)
-    user_name = models.CharField(max_length=50, null=False, blank=False, verbose_name='имя пользователя')
+    user_name = models.CharField(max_length=50, null=False, blank=False, verbose_name='имя')
     phone = models.CharField(max_length=60, null=False, blank=False, verbose_name='номер телефона')
     address = models.CharField(max_length=100, null=False, blank=False, verbose_name='адрес')
     created_at = models.DateTimeField(auto_now_add=True)

@@ -1,9 +1,9 @@
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import ListView, DeleteView
+from django.views.generic import ListView, DeleteView, CreateView
 
-from ebay.models import Basket, Product, OrderProduct, Order
+from ebay.models import Basket, Product, Order, OrderProduct
 from ebay.forms import OrderForm
 
 
@@ -32,9 +32,8 @@ class BasketView(ListView):
         total = 0
         for element in self.model.objects.all():
             total += element.get_product_total()
-        form = OrderForm()
         context['total'] = total
-        context['form'] = form
+        context['form'] = OrderForm()
         return context
 
 
@@ -46,17 +45,18 @@ class InBasketDeleteView(DeleteView):
         return self.delete(request, *args, **kwargs)
 
 
-class CreateOrder(View):
-    def post(self, request, *args, **kwargs):
-        in_basket = Basket.objects.all()
-        user_namee = self.request.POST.get('user_name')
-        adress = self.request.POST.get('address')
-        phone_n = self.request.POST.get('phone')
-        order = Order.objects.create(user_name=user_namee, address=adress, phone=phone_n)
+class CreateOrder(CreateView):
+    model = Order
+    form_class = OrderForm
+    success_url = reverse_lazy('all_products')
 
-        for element in in_basket:
-            OrderProduct.objects.create(order=order, product=element.product, quantity=element.quantity)
+    def form_valid(self, form):
+        order = form.save()
 
-        for element1 in in_basket:
-            element1.delete()
-        return redirect('view_basket')
+        for item in Basket.objects.all():
+            OrderProduct.objects.create(product=item.product, quantity=item.quantity, order=order)
+            item.product.remainder -= item.quantity
+            item.product.save()
+            item.delete()
+
+        return redirect(self.success_url)
