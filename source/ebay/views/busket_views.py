@@ -1,8 +1,10 @@
 from django.shortcuts import get_object_or_404, redirect
+from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import ListView
+from django.views.generic import ListView, DeleteView
 
 from ebay.models import Basket, Product, OrderProduct, Order
+from ebay.forms import OrderForm
 
 
 class AddToBasketView(View):
@@ -30,20 +32,22 @@ class BasketView(ListView):
         total = 0
         for element in self.model.objects.all():
             total += element.get_product_total()
+        form = OrderForm()
         context['total'] = total
+        context['form'] = form
         return context
 
 
-class InBasketDeleteView(View):
+class InBasketDeleteView(DeleteView):
+    model = Basket
+    success_url = reverse_lazy('view_basket')
+
     def get(self, request, *args, **kwargs):
-        product = Product.objects.get(pk=kwargs.get('pk'))
-        prod_in_basket = Basket.objects.get(product=product)
-        prod_in_basket.delete()
-        return redirect('view_basket')
+        return self.delete(request, *args, **kwargs)
 
 
 class CreateOrder(View):
-    def post(self, request, *arg, **kwargs):
+    def post(self, request, *args, **kwargs):
         in_basket = Basket.objects.all()
         user_namee = self.request.POST.get('user_name')
         adress = self.request.POST.get('address')

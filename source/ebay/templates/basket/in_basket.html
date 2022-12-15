@@ -13,6 +13,7 @@
       <thead>
         <tr>
           <th scope="col">Товар</th>
+          <th scope="col"></th>
           <th scope="col">количество (шт.)</th>
           <th scope="col">цена (сом)</th>
           <th scope="col">сумма (сом)</th>
@@ -22,7 +23,8 @@
       <tbody>
         {% for element in in_basket %}
             <tr>
-              <td>{{ element.product.name }} <a href="{% url 'delete_in_basket' element.product.id %}" class="btn btn-secondary btn-sm">Удалить</a></td>
+              <td>{{ element.product.name }}</td>
+              <td><a href="{% url 'delete_in_basket' element.pk %}" class="btn btn-secondary btn-sm">Удалить</a></td>
               <td>{{ element.quantity }}</td>
               <td>{{ element.product.price }}</td>
               <td>{{ element.get_product_total}}</td>
@@ -31,6 +33,7 @@
             <p>В корзине пока ничего нет</p>
         {% endfor %}
         <tr class="table-dark">
+            <td></td>
             <td></td>
             <td></td>
             <td>Итого:</td>
