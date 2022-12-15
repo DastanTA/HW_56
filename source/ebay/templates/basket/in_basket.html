@@ -20,16 +20,12 @@
       </thead>
 
       <tbody>
-        {% for element in in_basket%}
+        {% for element in in_basket %}
             <tr>
               <td>{{ element.product.name }} <a href="{% url 'delete_in_basket' element.product.id %}" class="btn btn-secondary btn-sm">Удалить</a></td>
               <td>{{ element.quantity }}</td>
               <td>{{ element.product.price }}</td>
-                {% for key, value in sum.items %}
-                    {% if key == element.product.name %}
-                        <td>{{ value }}</td>
-                    {% endif %}
-                {% endfor %}
+              <td>{{ element.get_product_total}}</td>
             </tr>
         {% empty %}
             <p>В корзине пока ничего нет</p>

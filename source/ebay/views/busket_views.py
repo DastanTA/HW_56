@@ -1,9 +1,8 @@
 from django.shortcuts import get_object_or_404, redirect
 from django.views import View
-from django.views.generic import TemplateView
+from django.views.generic import ListView
 
 from ebay.models import Basket, Product, OrderProduct, Order
-from ebay.forms import OrderForm
 
 
 class AddToBasketView(View):
@@ -21,25 +20,17 @@ class AddToBasketView(View):
         return redirect('all_products')
 
 
-class BasketView(TemplateView):
+class BasketView(ListView):
+    model = Basket
     template_name = 'basket/in_basket.html'
+    context_object_name = 'in_basket'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        form = OrderForm()
-        in_basket = Basket.objects.all()
-        all_products = Product.objects.all()
-        prod_sum_dict = {}
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(object_list=object_list, **kwargs)
         total = 0
-        for element in in_basket:
-            price = all_products.get(name__iexact=element.product.name).price
-            summ = element.quantity * price
-            prod_sum_dict[element.product.name] = summ
-            total += summ
-        context['sum'] = prod_sum_dict
-        context['in_basket'] = in_basket
+        for element in self.model.objects.all():
+            total += element.get_product_total()
         context['total'] = total
-        context['form'] = form
         return context
 
 

@@ -41,6 +41,9 @@ class Basket(models.Model):
     def __str__(self):
         return f'{self.product.name} - {self.quantity}'
 
+    def get_product_total(self):
+        return self.quantity * self.product.price
+
 
 class OrderProduct(models.Model):
     product = models.ForeignKey('ebay.Product', related_name='product_order', on_delete=models.DO_NOTHING,
