@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, redirect
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views import View
 from django.views.generic import ListView, DeleteView, CreateView
 
@@ -10,16 +10,21 @@ from ebay.forms import OrderForm
 class AddToBasketView(View):
     def post(self, request, *args, **kwargs):
         product = get_object_or_404(Product, pk=kwargs.get('pk'))
-        try:
-            basket = Basket.objects.get(product=product)
-        except Basket.DoesNotExist:
-            if product.remainder > 0:
-                Basket.objects.create(product=product, quantity=1)
+        qty = int(request.POST.get('quantity'))
+
+        basket, _ = Basket.objects.get_or_create(product=product, quantity=0)
+
+        if product.remainder >= basket.quantity + qty:
+            basket.quantity += qty
+            basket.save()
+        return redirect(self.get_redirect_url())
+
+    def get_redirect_url(self):
+        next = self.request.GET.get('next')
+        if next:
+            return next
         else:
-            if basket.quantity < product.remainder:
-                basket.quantity += 1
-                basket.save()
-        return redirect('all_products')
+            return reverse('all_products')
 
 
 class BasketView(ListView):
@@ -43,6 +48,24 @@ class InBasketDeleteView(DeleteView):
 
     def get(self, request, *args, **kwargs):
         return self.delete(request, *args, **kwargs)
+
+
+class BasketDeleteOneView(DeleteView):
+    model = Basket
+    success_url = reverse_lazy('view_basket')
+
+    def get(self, request, *args, **kwargs):
+        return self.delete(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        success_url = self.get_success_url()
+        self.object.quantity -= 1
+        if self.object.quantity < 1:
+            self.object.delete()
+        else:
+            self.object.save()
+        return redirect(success_url)
 
 
 class CreateOrder(CreateView):
