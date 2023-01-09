@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-    <form action="{% url 'add_product' %}" method="POST" class="mt-5">
+    <form action="{% url 'ebay:add_product' %}" method="POST" class="mt-5">
         {% include 'partial/form_template.html' with button_text="создать" %}
     </form>
 {% endblock %}

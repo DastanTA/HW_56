@@ -1,6 +1,5 @@
 from django.utils.http import urlencode
 from django.views.generic import ListView
-from ebay.forms import SimpleSearchForm
 from django.db.models import Q
 
 

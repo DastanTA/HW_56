@@ -7,20 +7,20 @@
 
 
 {% block menu %}
-    <li class="nav-item"><a class="nav-link" href="{% url 'add_product' %}">Добавить продукт</a></li>
-    <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Категории
-          </a>
-          <ul class="dropdown-menu">
+    <li class="nav-item"><a class="nav-link" href="{% url 'ebay:add_product' %}">Добавить продукт</a></li>
+{#    <li class="nav-item dropdown">#}
+{#          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">#}
+{#            Категории#}
+{#          </a>#}
+{#          <ul class="dropdown-menu">#}
 {#            <li><a class="dropdown-item" href="{% url 'by_category' 'food' %}">Еда</a></li>#}
 {#            <li><a class="dropdown-item" href="{% url 'by_category' 'toys' %}">Игрушки</a></li>#}
 {#            <li><a class="dropdown-item" href="{% url 'by_category' 'stationary' %}">Канцелярия</a></li>#}
 {#            <li><a class="dropdown-item" href="{% url 'by_category' 'books' %}">Книги</a></li>#}
 {#            <li><hr class="dropdown-divider"></li>#}
 {#            <li><a class="dropdown-item" href="{% url 'by_category' 'other' %}">Другое</a></li>#}
-          </ul>
-    </li>
+{#          </ul>#}
+{#    </li>#}
 {% endblock %}
 
 
@@ -44,8 +44,8 @@
             <p class="card-text">Цена: {{ product.price }}</p>
             <p class="card-text">Категория: {{ product.get_category_display }}</p><br>
             <a href="{{ product.get_absolute_url }}" class="btn btn-info">Подробнее</a>
-            <a href="{% url 'delete_product' product.id %}" class="btn btn-secondary">Удалить</a>
-            <a href="{% url 'update_product' product.id %}" class="btn btn-secondary">Изменить</a>
+            <a href="{% url 'ebay:delete_product' product.id %}" class="btn btn-secondary">Удалить</a>
+            <a href="{% url 'ebay:update_product' product.id %}" class="btn btn-secondary">Изменить</a>
             {% include 'basket/add_to_basket.html' %}
           </div>
         </div>

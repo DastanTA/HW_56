@@ -1,5 +1,3 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.db.models import Q
 from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 
@@ -43,11 +41,11 @@ class ProductUpdateView(UpdateView):
     context_object_name = 'product'
 
     def get_success_url(self):
-        return reverse('view_product', kwargs={'pk': self.object.pk})
+        return reverse('ebay:view_product', kwargs={'pk': self.object.pk})
 
 
 class ProductDeleteView(DeleteView):
     model = Product
     template_name = 'products/delete_product.html'
     context_object_name = 'product'
-    success_url = reverse_lazy('all_products')
+    success_url = reverse_lazy('ebay:all_products')

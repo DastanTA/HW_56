@@ -1,13 +1,8 @@
 from django.db import models
 from django.urls import reverse
 
-import ebay.models
 
 CATEGORY_CHOICES = [('food', 'еда'), ('toys', 'игрушки'), ('stationary', 'канцелярия'), ('books', 'книги'), ('other', 'другое')]
-
-#
-# class Category(models.Model):
-#     name = models.CharField(max_length=50, null=False, blank=False, verbose_name='название')
 
 
 class Product(models.Model):
@@ -26,7 +21,7 @@ class Product(models.Model):
         return f'{self.name}_(id: {self.id})'
 
     def get_absolute_url(self):
-        return reverse('view_product', kwargs={'pk': self.pk})
+        return reverse('ebay:view_product', kwargs={'pk': self.pk})
 
     def get_total_number(self):
         total = Product.objects.all().count()

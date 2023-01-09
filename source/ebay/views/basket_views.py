@@ -24,7 +24,7 @@ class AddToBasketView(View):
         if next:
             return next
         else:
-            return reverse('all_products')
+            return reverse('ebay:all_products')
 
 
 class BasketView(ListView):
@@ -44,7 +44,7 @@ class BasketView(ListView):
 
 class InBasketDeleteView(DeleteView):
     model = Basket
-    success_url = reverse_lazy('view_basket')
+    success_url = reverse_lazy('ebay:view_basket')
 
     def get(self, request, *args, **kwargs):
         return self.delete(request, *args, **kwargs)
@@ -52,7 +52,7 @@ class InBasketDeleteView(DeleteView):
 
 class BasketDeleteOneView(DeleteView):
     model = Basket
-    success_url = reverse_lazy('view_basket')
+    success_url = reverse_lazy('ebay:view_basket')
 
     def get(self, request, *args, **kwargs):
         return self.delete(request, *args, **kwargs)
@@ -71,7 +71,7 @@ class BasketDeleteOneView(DeleteView):
 class CreateOrder(CreateView):
     model = Order
     form_class = OrderForm
-    success_url = reverse_lazy('all_products')
+    success_url = reverse_lazy('ebay:all_products')
 
     def form_valid(self, form):
         order = form.save()

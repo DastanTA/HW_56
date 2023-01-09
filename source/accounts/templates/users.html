@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+All users
+{% endblock %}
+
+
+{% block menu %}
+    {% if perms.task_tracker.add_project %}
+        <li class="nav-item"><a class="nav-link" href="{% url 'task_tracker:add_project' %}">Добавить проект</a></li>
+    {% endif %}
+    <li class="nav-item"><a class="nav-link" href="{% url 'task_tracker:main' %}">Все задачи</a></li>
+{% endblock %}
+
+
+{% block content %}
+    <div><br><br><br><h2>Все пользователи</h2><br></div>
+    {% if perms.accounts.can_view_all_users %}
+
+        {% if is_paginated %}
+            {% include 'partial/pagination.html' %}
+        {% endif %}
+
+        <div class="row row-cols-1">
+            {% for user_obj in users %}
+              <div class="col mt-3">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ user_obj.username }}</h5>
+                    {% if user_obj.email %}
+                        <p class="card-text"> почта: {{ user_obj.email }}</p>
+                    {% endif %}
+                    <a href="{% url 'accounts:detail' user_obj.pk %}" class="btn btn-secondary">подробнее</a>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+        </div><br>
+
+        {% if is_paginated %}
+            {% include 'partial/pagination.html' %}
+        {% endif %}
+    {% else %}
+        <br><h6>У вас нет разрешения для просмотра пользователей</h6>
+    {% endif %}
+{% endblock %}
