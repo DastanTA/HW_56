@@ -1,8 +1,10 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.urls import reverse
+from django.contrib.sessions.models import Session
 
-
-CATEGORY_CHOICES = [('food', 'еда'), ('toys', 'игрушки'), ('stationary', 'канцелярия'), ('books', 'книги'), ('other', 'другое')]
+CATEGORY_CHOICES = [('food', 'еда'), ('toys', 'игрушки'), ('stationary', 'канцелярия'), ('books', 'книги'),
+                    ('other', 'другое')]
 
 
 class Product(models.Model):
@@ -32,6 +34,7 @@ class Basket(models.Model):
     product = models.ForeignKey('ebay.Product', related_name='basket', on_delete=models.DO_NOTHING,
                                 verbose_name='продукт', null=True, blank=True)
     quantity = models.PositiveIntegerField()
+    session_key = models.ForeignKey(Session, on_delete=models.CASCADE, verbose_name='сессия', null=True, blank=True)
 
     def __str__(self):
         return f'{self.product.name} - {self.quantity}'
@@ -54,7 +57,6 @@ class OrderProduct(models.Model):
 class Order(models.Model):
     product = models.ManyToManyField('ebay.Product', related_name='orders', through='ebay.OrderProduct',
                                      through_fields=('order', 'product'), blank=True)
-    user_name = models.CharField(max_length=50, null=False, blank=False, verbose_name='имя')
-    phone = models.CharField(max_length=60, null=False, blank=False, verbose_name='номер телефона')
-    address = models.CharField(max_length=100, null=False, blank=False, verbose_name='адрес')
+    user = models.ForeignKey(get_user_model(), related_name='order', on_delete=models.CASCADE,
+                             verbose_name='Пользователь', default=1)
     created_at = models.DateTimeField(auto_now_add=True)

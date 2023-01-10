@@ -21,9 +21,9 @@ class BasketAdmin(admin.ModelAdmin):
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['id', 'user_name', 'created_at']
+    list_display = ['id', 'user', 'created_at']
     list_filter = ['created_at']
-    search_fields = ['user_name']
+    search_fields = ['user']
     inlines = [
         OrderProductInLine,
     ]

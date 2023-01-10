@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
 from django.views import View
-from django.views.generic import ListView, DeleteView, CreateView
+from django.views.generic import ListView, DeleteView
 
 from ebay.models import Basket, Product, Order, OrderProduct
 from ebay.forms import OrderForm
@@ -12,7 +12,10 @@ class AddToBasketView(View):
         product = get_object_or_404(Product, pk=kwargs.get('pk'))
         qty = int(request.POST.get('quantity'))
 
-        basket, _ = Basket.objects.get_or_create(product=product, quantity=0)
+        if not request.session.exists(request.session.session_key):
+            request.session.create()
+
+        basket, _ = Basket.objects.get_or_create(product=product, quantity=0, session_key_id=request.session.session_key)
 
         if product.remainder >= basket.quantity + qty:
             basket.quantity += qty
@@ -39,6 +42,7 @@ class BasketView(ListView):
             total += element.get_product_total()
         context['total'] = total
         context['form'] = OrderForm()
+        print(self.request.session.session_key)
         return context
 
 
@@ -68,13 +72,27 @@ class BasketDeleteOneView(DeleteView):
         return redirect(success_url)
 
 
-class CreateOrder(CreateView):
-    model = Order
-    form_class = OrderForm
-    success_url = reverse_lazy('ebay:all_products')
+# class CreateOrder(CreateView):
+#     model = Order
+#     form_class = OrderForm
+#     success_url = reverse_lazy('ebay:all_products')
+#
+#     def form_valid(self, form):
+#         order = form.save()
+#         order.user = self.request.user
+#
+#         for item in Basket.objects.all():
+#             OrderProduct.objects.create(product=item.product, quantity=item.quantity, order=order)
+#             item.product.remainder -= item.quantity
+#             item.product.save()
+#             item.delete()
+#
+#         return redirect(self.success_url)
 
-    def form_valid(self, form):
-        order = form.save()
+
+class CreateOrder(View):
+    def post(self, request, *args, **kwargs):
+        order = Order.objects.create(user=request.user)
 
         for item in Basket.objects.all():
             OrderProduct.objects.create(product=item.product, quantity=item.quantity, order=order)
@@ -82,4 +100,4 @@ class CreateOrder(CreateView):
             item.product.save()
             item.delete()
 
-        return redirect(self.success_url)
+        return redirect('ebay:all_products')
