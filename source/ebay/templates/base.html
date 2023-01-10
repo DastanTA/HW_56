@@ -31,9 +31,9 @@
                 {% block login %}
                     <a class="btn btn-secondary btn-sm ms-2" href="{% url 'accounts:login' %}?next={% if request.GET.next %}{{ request.GET.next }}{% else %}{{ request.get_full_path }}{% endif %}">Войти</a>
                 {% endblock %}
-{#                {% block registration %}#}
-{#                    <a class="btn btn-outline-secondary btn-sm ms-2" href="{% url 'accounts:register' %}?next={% if request.GET.next %}{{ request.GET.next }}{% else %}{{ request.get_full_path }}{% endif %}">Регистрация</a>#}
-{#                {% endblock %}#}
+                {% block registration %}
+                    <a class="btn btn-outline-secondary btn-sm ms-2" href="{% url 'accounts:register' %}?next={% if request.GET.next %}{{ request.GET.next }}{% else %}{{ request.get_full_path }}{% endif %}">Регистрация</a>
+                {% endblock %}
           {% endif %}
 
     {% block search %}{% endblock %}
