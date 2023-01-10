@@ -5,9 +5,15 @@
 {% endblock %}
 
 {% block menu %}
-    <li class="nav-item"><a class="nav-link" href="{% url 'ebay:add_product' %}">Добавить</a></li>
-    <li class="nav-item"><a class="nav-link" href="{% url 'ebay:update_product' product.id %}">Изменить</a></li>
-    <li class="nav-item"><a class="nav-link" href="{% url 'ebay:delete_product' product.id %}">Удалить</a></li>
+    {% if perms.ebay.add_product %}
+        <li class="nav-item"><a class="nav-link" href="{% url 'ebay:add_product' %}">Добавить</a></li>
+    {% endif %}
+    {% if perms.ebay.change_product %}
+        <li class="nav-item"><a class="nav-link" href="{% url 'ebay:update_product' product.id %}">Изменить</a></li>
+    {% endif %}
+    {% if perms.ebay.delete_product %}
+        <li class="nav-item"><a class="nav-link" href="{% url 'ebay:delete_product' product.id %}">Удалить</a></li>
+    {% endif %}
 {% endblock %}
 
 {% block content %}
@@ -22,10 +28,13 @@
     <li class="list-group-item">остаток: {{ product.remainder }} шт.</li>
   </ul>
   <div class="card-body">
-    <a href="{% url 'ebay:update_product' product.id %}" class="btn btn-secondary">Изменить</a>
-    <a href="{% url 'ebay:delete_product' product.id %}" class="btn btn-secondary">Удалить</a>
+    {% if perms.ebay.change_product %}
+        <a href="{% url 'ebay:update_product' product.id %}" class="btn btn-secondary">Изменить</a>
+    {% endif %}
+    {% if perms.ebay.delete_product %}
+        <a href="{% url 'ebay:delete_product' product.id %}" class="btn btn-secondary">Удалить</a>
+    {% endif %}
     {% include 'basket/add_to_basket.html' %}
-{#    <a href="{% url 'add_to_basket' product.id %}" class="btn btn-warning">Добавить в корзину</a>#}
   </div>
 </div>
 {% endblock %}
