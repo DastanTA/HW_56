@@ -1,0 +1,207 @@
+[
+{
+    "model": "auth.group",
+    "pk": 1,
+    "fields": {
+        "name": "moderators",
+        "permissions": [
+            [
+                "add_basket",
+                "ebay",
+                "basket"
+            ],
+            [
+                "add_busket",
+                "ebay",
+                "basket"
+            ],
+            [
+                "change_basket",
+                "ebay",
+                "basket"
+            ],
+            [
+                "change_busket",
+                "ebay",
+                "basket"
+            ],
+            [
+                "delete_basket",
+                "ebay",
+                "basket"
+            ],
+            [
+                "delete_busket",
+                "ebay",
+                "basket"
+            ],
+            [
+                "view_basket",
+                "ebay",
+                "basket"
+            ],
+            [
+                "view_busket",
+                "ebay",
+                "basket"
+            ],
+            [
+                "add_order",
+                "ebay",
+                "order"
+            ],
+            [
+                "change_order",
+                "ebay",
+                "order"
+            ],
+            [
+                "delete_order",
+                "ebay",
+                "order"
+            ],
+            [
+                "view_order",
+                "ebay",
+                "order"
+            ],
+            [
+                "add_orderinbasket",
+                "ebay",
+                "orderproduct"
+            ],
+            [
+                "add_orderproduct",
+                "ebay",
+                "orderproduct"
+            ],
+            [
+                "change_orderinbasket",
+                "ebay",
+                "orderproduct"
+            ],
+            [
+                "change_orderproduct",
+                "ebay",
+                "orderproduct"
+            ],
+            [
+                "delete_orderinbasket",
+                "ebay",
+                "orderproduct"
+            ],
+            [
+                "delete_orderproduct",
+                "ebay",
+                "orderproduct"
+            ],
+            [
+                "view_orderinbasket",
+                "ebay",
+                "orderproduct"
+            ],
+            [
+                "view_orderproduct",
+                "ebay",
+                "orderproduct"
+            ],
+            [
+                "add_product",
+                "ebay",
+                "product"
+            ],
+            [
+                "change_product",
+                "ebay",
+                "product"
+            ],
+            [
+                "delete_product",
+                "ebay",
+                "product"
+            ],
+            [
+                "view_product",
+                "ebay",
+                "product"
+            ]
+        ]
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$390000$v7nPSBV5RNBSzhXEXyFRvQ$1LVhpuHBspaNOK4HRy/CxhtnDFRVESOVYKupbDC6OWw=",
+        "last_login": "2023-01-10T08:13:31Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2022-12-09T15:46:27Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$390000$10wIhfKpwkwmQOFjPpz35t$LNscEoOBfA4afe1M6iTrocMO3FmYEI80SRwNlJMRLj8=",
+        "last_login": "2023-01-10T08:47:14.566Z",
+        "is_superuser": false,
+        "username": "das",
+        "first_name": "Dastan",
+        "last_name": "Turatbekov",
+        "email": "dastan.turatbekov@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-01-10T06:40:15Z",
+        "groups": [
+            [
+                "moderators"
+            ]
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$390000$d0SMeP8o7OCAwtyzSolU8q$tjt/AA2qfaLxmXvC1nNMgAjqKdPsw6pQHoAEil9+scw=",
+        "last_login": "2023-01-10T12:27:41.638Z",
+        "is_superuser": false,
+        "username": "user1",
+        "first_name": "Userbay",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-01-10T06:46:45Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$390000$cIMjRrvjVe7YX2N6zjkPta$cDVus4wie346qlvFKExD+vwWSrQ6BkXXRQz/CctQg8w=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "user2",
+        "first_name": "Userbek",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-01-10T06:47:03Z",
+        "groups": [],
+        "user_permissions": []
+    }
+}
+]

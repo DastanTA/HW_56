@@ -1,0 +1,38 @@
+[
+{
+    "model": "accounts.profile",
+    "pk": 1,
+    "fields": {
+        "user": 2,
+        "phone_number": "555 787689",
+        "address": "Bishkek"
+    }
+},
+{
+    "model": "accounts.profile",
+    "pk": 2,
+    "fields": {
+        "user": 3,
+        "phone_number": "777 12 34 56",
+        "address": "Talas"
+    }
+},
+{
+    "model": "accounts.profile",
+    "pk": 3,
+    "fields": {
+        "user": 4,
+        "phone_number": "0312 438040",
+        "address": "Bishkek, mcr-11"
+    }
+},
+{
+    "model": "accounts.profile",
+    "pk": 4,
+    "fields": {
+        "user": 1,
+        "phone_number": "111 111 111",
+        "address": null
+    }
+}
+]

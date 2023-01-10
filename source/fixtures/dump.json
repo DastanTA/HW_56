@@ -6,7 +6,7 @@
         "name": "Bread",
         "description": "Baton. 0.4 kg",
         "category": "food",
-        "remainder": 5,
+        "remainder": 0,
         "price": "45.00"
     }
 },
@@ -17,7 +17,7 @@
         "name": "robot",
         "description": "Toy robot. Autobot - Transformer",
         "category": "toys",
-        "remainder": 4,
+        "remainder": 3,
         "price": "150.00"
     }
 },
@@ -39,7 +39,7 @@
         "name": "Notebook",
         "description": "Ordinary notebook. A4 size",
         "category": "stationary",
-        "remainder": 100,
+        "remainder": 95,
         "price": "50.00"
     }
 },
@@ -61,7 +61,7 @@
         "name": "Milk",
         "description": "Milk. Dairy. 2.5%. expiry date: 20.12.2022",
         "category": "food",
-        "remainder": 40,
+        "remainder": 39,
         "price": "70.00"
     }
 },
@@ -72,7 +72,7 @@
         "name": "Pen",
         "description": "Ordinary, most cheap pen",
         "category": "stationary",
-        "remainder": 100,
+        "remainder": 93,
         "price": "15.00"
     }
 },
@@ -85,6 +85,17 @@
         "category": "other",
         "remainder": 0,
         "price": "250.00"
+    }
+},
+{
+    "model": "ebay.product",
+    "pk": 10,
+    "fields": {
+        "name": "тест 1",
+        "description": "Test 1",
+        "category": "other",
+        "remainder": 1,
+        "price": "0.04"
     }
 },
 {
@@ -133,12 +144,82 @@
     }
 },
 {
+    "model": "ebay.orderproduct",
+    "pk": 8,
+    "fields": {
+        "product": 1,
+        "order": 4,
+        "quantity": 5
+    }
+},
+{
+    "model": "ebay.orderproduct",
+    "pk": 9,
+    "fields": {
+        "product": 6,
+        "order": 4,
+        "quantity": 1
+    }
+},
+{
+    "model": "ebay.orderproduct",
+    "pk": 10,
+    "fields": {
+        "product": 4,
+        "order": 5,
+        "quantity": 1
+    }
+},
+{
+    "model": "ebay.orderproduct",
+    "pk": 11,
+    "fields": {
+        "product": 7,
+        "order": 5,
+        "quantity": 2
+    }
+},
+{
+    "model": "ebay.orderproduct",
+    "pk": 12,
+    "fields": {
+        "product": 4,
+        "order": 6,
+        "quantity": 3
+    }
+},
+{
+    "model": "ebay.orderproduct",
+    "pk": 13,
+    "fields": {
+        "product": 7,
+        "order": 6,
+        "quantity": 5
+    }
+},
+{
+    "model": "ebay.orderproduct",
+    "pk": 14,
+    "fields": {
+        "product": 4,
+        "order": 7,
+        "quantity": 1
+    }
+},
+{
+    "model": "ebay.orderproduct",
+    "pk": 15,
+    "fields": {
+        "product": 2,
+        "order": 7,
+        "quantity": 1
+    }
+},
+{
     "model": "ebay.order",
     "pk": 1,
     "fields": {
-        "user_name": "Dastan",
-        "phone": "0666 787689",
-        "address": "Bishkek, Ak-uy",
+        "user": 1,
         "created_at": "2022-12-13T12:44:33.630Z"
     }
 },
@@ -146,28 +227,40 @@
     "model": "ebay.order",
     "pk": 3,
     "fields": {
-        "user_name": "Urmat",
-        "phone": "4567 898757234",
-        "address": "Talas, KG",
+        "user": 1,
         "created_at": "2022-12-13T12:47:49.465Z"
     }
 },
 {
-    "model": "auth.user",
-    "pk": 1,
+    "model": "ebay.order",
+    "pk": 4,
     "fields": {
-        "password": "pbkdf2_sha256$390000$v7nPSBV5RNBSzhXEXyFRvQ$1LVhpuHBspaNOK4HRy/CxhtnDFRVESOVYKupbDC6OWw=",
-        "last_login": "2022-12-13T05:28:08.340Z",
-        "is_superuser": true,
-        "username": "admin",
-        "first_name": "",
-        "last_name": "",
-        "email": "",
-        "is_staff": true,
-        "is_active": true,
-        "date_joined": "2022-12-09T15:46:27.752Z",
-        "groups": [],
-        "user_permissions": []
+        "user": 1,
+        "created_at": "2022-12-15T16:37:35.039Z"
+    }
+},
+{
+    "model": "ebay.order",
+    "pk": 5,
+    "fields": {
+        "user": 3,
+        "created_at": "2023-01-10T09:34:13.163Z"
+    }
+},
+{
+    "model": "ebay.order",
+    "pk": 6,
+    "fields": {
+        "user": 3,
+        "created_at": "2023-01-10T11:26:32.454Z"
+    }
+},
+{
+    "model": "ebay.order",
+    "pk": 7,
+    "fields": {
+        "user": null,
+        "created_at": "2023-01-10T11:57:27.522Z"
     }
 }
 ]
