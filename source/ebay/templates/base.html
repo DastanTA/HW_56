@@ -23,6 +23,9 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         {% block menu %}{% endblock %}
         <li class="nav-item"><a class="nav-link" href="{% url 'ebay:view_basket' %}">Корзина</a></li>
+        {% if request.user.is_authenticated %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'accounts:view_orders' request.user.pk %}">Мои заказы</a></li>
+        {% endif %}
       </ul>
           {% if request.user.is_authenticated %}
                 <p class="ms-auto text-secondary d-inline-block my-0 py-auto">Привет, {{ user.username }}!</p>

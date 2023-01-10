@@ -53,10 +53,13 @@ class OrderProduct(models.Model):
     def __str__(self):
         return f'{self.product} | {self.order}'
 
+    def get_product_total(self):
+        return self.quantity * self.product.price
+
 
 class Order(models.Model):
-    product = models.ManyToManyField('ebay.Product', related_name='orders', through='ebay.OrderProduct',
+    product = models.ManyToManyField('ebay.Product', related_name='order', through='ebay.OrderProduct',
                                      through_fields=('order', 'product'), blank=True)
-    user = models.ForeignKey(get_user_model(), related_name='order', on_delete=models.CASCADE,
-                             verbose_name='Пользователь', default=1)
+    user = models.ForeignKey(get_user_model(), related_name='orders', on_delete=models.CASCADE,
+                             verbose_name='Пользователь', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)

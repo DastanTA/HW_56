@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    My orders
+{% endblock %}
+
+
+{% block content %}
+    <div><br><br><br><h2>Что я заказал </h2><br></div>
+
+    <table  class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Товар</th>
+          <th scope="col">количество (шт.)</th>
+          <th scope="col">цена (сом)</th>
+          <th scope="col">сумма (сом)</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for order in orders %}
+            <tr>
+              <td>{{ order.product.name }}</td>
+              <td>{{ order.product.quantity }}</td>
+              <td>{{ order.product.price }}</td>
+              <td>{{ order.get_product_total}}</td>
+            </tr>
+        {% empty %}
+            <p>Вы еще ничего не заказали</p>
+        {% endfor %}
+        <tr class="table-dark">
+            <td></td>
+            <td></td>
+            <td>Итого:</td>
+            <td>{{ total }} сом</td>
+        </tr>
+      </tbody>
+    </table>
+
+{% endblock %}

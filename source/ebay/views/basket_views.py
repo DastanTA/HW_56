@@ -42,7 +42,6 @@ class BasketView(ListView):
             total += element.get_product_total()
         context['total'] = total
         context['form'] = OrderForm()
-        print(self.request.session.session_key)
         return context
 
 
@@ -72,27 +71,13 @@ class BasketDeleteOneView(DeleteView):
         return redirect(success_url)
 
 
-# class CreateOrder(CreateView):
-#     model = Order
-#     form_class = OrderForm
-#     success_url = reverse_lazy('ebay:all_products')
-#
-#     def form_valid(self, form):
-#         order = form.save()
-#         order.user = self.request.user
-#
-#         for item in Basket.objects.all():
-#             OrderProduct.objects.create(product=item.product, quantity=item.quantity, order=order)
-#             item.product.remainder -= item.quantity
-#             item.product.save()
-#             item.delete()
-#
-#         return redirect(self.success_url)
-
-
 class CreateOrder(View):
     def post(self, request, *args, **kwargs):
-        order = Order.objects.create(user=request.user)
+        if request.user.is_authenticated:
+            order = Order.objects.create(user=request.user)
+        else:
+            print(request.user)
+            order = Order.objects.create(user=None)
 
         for item in Basket.objects.all():
             OrderProduct.objects.create(product=item.product, quantity=item.quantity, order=order)
